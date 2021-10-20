@@ -1,0 +1,21 @@
+<div class="col-md-12"> 
+    <div class="card">
+        <div class="card-header">Atsiliepimu sarasas</div>
+        <div class="card-body">
+
+            <ul class="list-group mt-3" *ngIf="!isLoading && atsiliepimai.length!=0">
+                <li class="list-group-item" *ngFor="let atsiliepimas of atsiliepimai">
+                    <b>{{atsiliepimas.vardas}}:</b>{{atsiliepimas.textas}}
+                    <button class="btn btn-warning float-end" (click)="anonymous(atsiliepimas.id)">Nuasmeninti</button>
+                    <button class="btn btn-danger float-end" (click)="deleteAtsiliepimas(atsiliepimas.id)">Istrinti</button>
+                </li>
+            </ul>
+            <div class="alert alert-info" *ngIf="isLoading">Prasome palaukti atsiliepimai kraunasi...</div>
+            <div class="alert alert-warning" *ngIf="!isLoading && atsiliepimai.length==0 ">Atsiliepimu kol kas nera</div>
+            <button class="btn btn-success"(click)="getAtsiliepimai()">Uzkrauti atsiliepimus</button>
+            <button class="btn btn-danger float-end" (click)="deleteAtsiliepimai()">Istrinti visus atsiliepimus</button>
+        </div>
+    </div>
+    <app-add-atsiliepimas (updateAtsiliepimai)="onUpdate()"></app-add-atsiliepimas>
+</div>
+
